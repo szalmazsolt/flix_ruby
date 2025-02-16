@@ -30,7 +30,24 @@ class Movie
 end
 
 class Playlist
-  
+  def initialize(name)
+    @name = name.capitalize
+    @movies = []
+  end
+
+  def add_movie(movie)
+    @movies << movie
+  end
+
+  def play
+    puts "Playing #{@name}'s playlist:"
+    puts @movies
+    puts "Reviewing".center(30, '.')
+    @movies.each do |movie|
+      movie.thumbs_up
+      puts movie
+    end
+  end
 end
 
 movie1 = Movie.new("goonies", 10)
