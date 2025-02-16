@@ -12,17 +12,12 @@ class Movie
     0
   end
 
-  def stars
-    '⭐️' * num_of_stars
-  end
+  # endless methods
+  def stars = '⭐️' * num_of_stars
 
-  def thumbs_up
-    @rank += 1
-  end
+  def thumbs_up = @rank += 1
 
-  def thumbs_down
-    @rank -= 1
-  end
+  def thumbs_down = @rank -= 1
 
   def to_s
     "#{@title} has a rank of".ljust(30, '.') + "#{@rank.to_s.rjust(3, ' ')} (#{stars.empty? ? "No stars" : stars})"
