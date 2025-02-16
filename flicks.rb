@@ -29,13 +29,16 @@ class Movie
   end
 end
 
+class Playlist
+  
+end
+
 movie1 = Movie.new("goonies", 10)
 movie2 = Movie.new("ghostbusters", 9)
 movie3 = Movie.new("goldfinger")
 
-movies = [movie1, movie2, movie3]
-
-movies.each do |movie|
-  movie.thumbs_up
-  puts movie
-end
+playlist1 = Playlist.new("Kermit")
+playlist1.add_movie(movie1)
+playlist1.add_movie(movie2)
+playlist1.add_movie(movie3)
+playlist1.play
