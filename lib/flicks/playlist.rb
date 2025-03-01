@@ -1,4 +1,5 @@
 require_relative 'reviewer'
+require_relative 'snackbar'
 
 class Playlist
   # puts self
@@ -17,10 +18,14 @@ class Playlist
     puts "\nBefore viewing:"
     puts @movies
     puts
+    snacks = SnackBar::SNACKS
+    puts "There are #{snacks.size} snacks available"
     1.upto(viewings) do |viewing|
       puts "\n#{viewing}. viewing:"
       @movies.each do |movie|
         Reviewer.review(movie)
+        snack = SnackBar.get_random
+        puts "Reviewing #{movie.title} has led to the consumption of #{snack.carbs} carbs of #{snack.name}"
       end
     end
     puts "\nAfter viewing:"
