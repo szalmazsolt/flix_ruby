@@ -1,5 +1,7 @@
 Snack = Struct.new(:name, :carbs)
 
+# The attribute of a class created from Struct (in this case, a Snack) can be modified during the running of the program
+
 module SnackBar
   SNACKS = [
     Snack.new(:popcorn, 10),
