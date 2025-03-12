@@ -38,14 +38,30 @@ class Playlist
         Reviewer.review(movie)
         # snack = SnackBar.get_random
         snack = SNACKS.sample
-        puts "Reviewing #{movie.title} has led to the consumption of #{snack.carbs} carbs of #{snack.name}"
+        movie.consumed_snack(snack)
       end
     end
     puts "\nAfter viewing:"
     puts @movies
+    puts
   end
 
   def print_stats
+    print "Grand total carbs consumed by #{@name}: "
+    grand_total_carbs = 0
+    @movies.each do |movie|
+      grand_total_carbs += movie.total_carbs_per_movie
+    end
+    puts grand_total_carbs
+    @movies.each do |movie|
+      puts "For #{movie.title}:"
+      movie.each_snack do |snack|
+        puts "#{snack.name.capitalize} with #{snack.carbs} carbs was consumed"
+      end
+      print "The total carbs consumed: "
+      puts movie.total_carbs_per_movie
+      puts
+    end
     hits, flops = @movies.partition {|m| m.hit?}
     puts
     puts "Stats".center(20, '.')

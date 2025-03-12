@@ -5,6 +5,7 @@ class Movie
   def initialize(title:, rank: 0)
     @title = title.capitalize
     @rank = rank.to_i
+    @snack_carbs = Hash.new(0)
   end
 
   def num_of_stars
@@ -26,6 +27,22 @@ class Movie
   def thumbs_down
     # puts self.inspect
     @rank -= 1 if @rank > 0
+  end
+
+  def consumed_snack(snack)
+    @snack_carbs[snack.name] += snack.carbs
+    puts "While watching #{@title} you ate #{snack.carbs} carbs of #{snack.name}"
+  end
+
+  def each_snack
+    @snack_carbs.each do |name, carbs|
+      snack = Snack.new(name, carbs)
+      yield snack
+    end
+  end
+
+  def total_carbs_per_movie
+    @snack_carbs.values.reduce(0, :+) 
   end
 
   def to_s
