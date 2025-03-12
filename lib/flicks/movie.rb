@@ -1,3 +1,5 @@
+require_relative "snackbar"
+
 class Movie
   attr_accessor :title
   attr_reader :rank
@@ -36,7 +38,7 @@ class Movie
 
   def each_snack
     @snack_carbs.each do |name, carbs|
-      snack = Snack.new(name, carbs)
+      snack = SnackBar::Snack.new(name, carbs)
       yield snack
     end
   end

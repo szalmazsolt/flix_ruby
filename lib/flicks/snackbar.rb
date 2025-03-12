@@ -1,14 +1,17 @@
-Snack = Struct.new(:name, :carbs)
-
+# Snack = Struct.new(:name, :carbs)
+# 
 # The attribute of a class created from Struct (in this case, a Snack) can be modified during the running of the program
 
 module SnackBar
+  # A Date structure defines a class whose attributes unlike Struct attributes cannot be modified
+  Snack = Data.define(:name, :carbs)
+
+  # Constants in Ruby are all upper-cased, except for class names
   SNACKS = [
-    Snack.new(:popcorn, 10),
-    Snack.new(:nachos, 40),
-    Snack.new(:candy, 15),
-    Snack.new(:pretzel, 10),
-    Snack.new(:soda, 5)
+    Snack.new(:popcorn, 15),
+    Snack.new(:soda, 5),
+    Snack.new(:nachos, 20),
+    Snack.new(:candy, 10),
   ]
 
   def self.get_random

@@ -3,17 +3,6 @@ require_relative 'snackbar'
 
 class Playlist
   # puts self
-  
-  # A Date structure defines a class whose attributes unlike Struct attributes cannot be modified
-  Snack = Data.define(:name, :carbs)
-
-  # Constants in Ruby are all upper-cased, except for class names
-  SNACKS = [
-    Snack.new(:popcorn, 15),
-    Snack.new(:soda, 5),
-    Snack.new(:nachos, 20),
-    Snack.new(:candy, 10),
-  ]
 
   def initialize(name)
     @name = name.capitalize
@@ -30,14 +19,13 @@ class Playlist
     puts "\nBefore viewing:"
     puts @movies
     puts
-    # snacks = SnackBar::SNACKS
-    puts "There are #{SNACKS.size} snacks available"
+    snacks = SnackBar::SNACKS
+    puts "There are #{snacks.size} snacks available"
     1.upto(viewings) do |viewing|
       puts "\n#{viewing}. viewing:"
       @movies.each do |movie|
         Reviewer.review(movie)
-        # snack = SnackBar.get_random
-        snack = SNACKS.sample
+        snack = SnackBar.get_random
         movie.consumed_snack(snack)
       end
     end
