@@ -17,6 +17,10 @@ module SnackBar
   def self.get_random
     SNACKS.sample
   end
+
+  def self.menu_items
+    SNACKS.map {|snack| "#{snack.name} with #{snack.carbs} carbs"}
+  end
 end
 
 if __FILE__ == $0

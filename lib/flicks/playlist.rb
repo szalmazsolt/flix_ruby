@@ -13,14 +13,20 @@ class Playlist
     @movies << movie
   end
 
+  def sorted_movies
+    @movies.sort_by { |movie| movie.rank }.reverse
+  end
+
   def play(viewings)
     # puts self.inspect
     puts "Playing #{@name}'s playlist."
     puts "\nBefore viewing:"
     puts @movies
     puts
-    snacks = SnackBar::SNACKS
-    puts "There are #{snacks.size} snacks available"
+    # snacks = SnackBar::SNACKS
+    # puts "There are #{snacks.size} snacks available"
+    puts "Choose from the snackbar:"
+    puts SnackBar.menu_items
     1.upto(viewings) do |viewing|
       puts "\n#{viewing}. viewing:"
       @movies.each do |movie|
@@ -30,7 +36,7 @@ class Playlist
       end
     end
     puts "\nAfter viewing:"
-    puts @movies
+    puts sorted_movies
     puts
   end
 
@@ -59,6 +65,6 @@ class Playlist
     puts flops
     puts
     puts 'Movie Rankings:'
-    puts @movies.sort_by {|m| m.rank}.reverse
+    puts sorted_movies
   end
 end
