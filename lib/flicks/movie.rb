@@ -4,6 +4,11 @@ class Movie
   attr_accessor :title
   attr_reader :rank
 
+  def self.from_csv(line)
+    title, rank = line.chomp.split(",")
+    self.new(title: title, rank: Integer(rank))
+  end
+
   def initialize(title:, rank: 0)
     @title = title.capitalize
     @rank = rank.to_i
@@ -49,6 +54,10 @@ class Movie
 
   def to_s
     "#{@title} has a rank of".ljust(30, '.') + "#{@rank.to_s.rjust(3, ' ')}, it's a #{status} (#{stars.empty? ? "No stars" : stars})"
+  end
+
+  def to_csv
+    "#{@title},#{@rank}"
   end
 end
 
