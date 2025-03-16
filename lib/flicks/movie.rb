@@ -1,39 +1,26 @@
 require_relative "snackbar"
+require_relative "rankable"
 
 class Movie
-  attr_accessor :title
-  attr_reader :rank
+  include Rankable
+
+  attr_accessor :title, :rank
 
   def self.from_csv(line)
     title, rank = line.chomp.split(",")
     self.new(title: title, rank: Integer(rank))
+  rescue ArgumentError => e
+    puts "Sorry, but #{rank} is not an integer!"
+    puts e.message
+    puts "Setting rank of #{title} to 5..."
+    self.new(title: title, rank: 5)
+    # exit 1
   end
 
   def initialize(title:, rank: 0)
     @title = title.capitalize
     @rank = rank.to_i
     @snack_carbs = Hash.new(0)
-  end
-
-  def num_of_stars
-    return @rank / 2 unless @rank <= 0
-    0
-  end
-
-  # endless methods
-  def stars = '⭐️' * num_of_stars
-
-  def hit? = @rank >= 10
-
-  def status 
-    hit? ? 'Hit' : 'Flop'
-  end
-
-  def thumbs_up = @rank += 1
-
-  def thumbs_down
-    # puts self.inspect
-    @rank -= 1 if @rank > 0
   end
 
   def consumed_snack(snack)

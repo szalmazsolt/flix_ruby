@@ -22,4 +22,6 @@ if __FILE__ == $0
   movie3d.thumbs_up
   puts movie3d
   movie3d.show_effect
+  p Movie3D.superclass
+  p Movie3D.ancestors
 end

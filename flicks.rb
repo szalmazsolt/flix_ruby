@@ -3,8 +3,13 @@ require_relative 'lib/flicks/playlist'
 require_relative 'lib/flicks/movie3d'
 
 playlist1 = Playlist.new("Kermit")
-playlist1.load(ARGV.shift || 'movies.csv')
+
+movies_path = File.join(__dir__, 'movies.csv')
+playlist1.load(ARGV.shift || movies_path)
+
 playlist1.add_movie(Movie3D.new(title: 'Glee', rank: 6, wow_factor: 20))
+
+
 
 loop do
   print "How many viewings? ('quit' or 'q' to exit) "

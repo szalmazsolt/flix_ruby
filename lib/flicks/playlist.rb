@@ -10,11 +10,18 @@ class Playlist
   end
 
   def load(from_file)
-    File.open(from_file) do |file|
-      file.readlines.each do |line|
-        add_movie(Movie.from_csv(line))
-      end
+    File.readlines(from_file, chomp: true).each do |line|
+      add_movie(Movie.from_csv(line))
     end
+  # if do not explicitly specify an exception class (like Errno::ENOENT), the rescue clause will catch any StandardError
+  rescue Errno::ENOENT => e
+    puts "Woops! The file #{from_file} does not exist!"
+    puts e.message
+    exit 1
+  # we can catch more than one type of error by using another rescue caluse
+  # rescue ArgumentError
+  #   puts "Argument Error"
+  #   exit 1
   end
 
   def save(to_file="movie_rankings.csv")
