@@ -1,6 +1,7 @@
-require_relative 'lib/flicks/movie'
-require_relative 'lib/flicks/playlist'
-require_relative 'lib/flicks/movie3d'
+#!/usr/bin/env ruby
+require_relative '../lib/flicks/playlist'
+# require_relative '../lib/flicks/movie'
+# require_relative '../lib/flicks/movie3d'
 
 playlist1 = Flicks::Playlist.new("Kermit")
 
@@ -8,8 +9,6 @@ movies_path = File.join(__dir__, 'movies.csv')
 playlist1.load(ARGV.shift || movies_path)
 
 playlist1.add_movie(Flicks::Movie3D.new(title: 'Glee', rank: 6, wow_factor: 20))
-
-
 
 loop do
   print "How many viewings? ('quit' or 'q' to exit) "
@@ -25,7 +24,3 @@ loop do
     puts "Please enter a valid number!"
   end
 end
-
-
-
-
